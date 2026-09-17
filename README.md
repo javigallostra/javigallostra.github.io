@@ -33,7 +33,7 @@ Optional:
 
 | Field | Notes |
 | --- | --- |
-| `lang` | BCP 47 code for the notes, e.g. `es`. Sets `lang` on the notes cell so screen readers pronounce them correctly and browsers offer to translate. Omit when the notes are in English. |
+| `notes_lang` | BCP 47 code for the language of the notes, e.g. `es`. Sets `lang` on the notes cell so screen readers pronounce them correctly and browsers offer to translate. It applies to the notes only, not the title. Omit when the notes are in English. |
 
 The body is the notes, and may use markdown. The table sorts newest-first and
 picks up new categories automatically.
