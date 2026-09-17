@@ -29,6 +29,12 @@ All five front matter fields are required:
 | `rating` | integer, 1–10 |
 | `categories` | always a bracketed list, even for one value: `[tech]` |
 
+Optional:
+
+| Field | Notes |
+| --- | --- |
+| `lang` | BCP 47 code for the notes, e.g. `es`. Sets `lang` on the notes cell so screen readers pronounce them correctly and browsers offer to translate. Omit when the notes are in English. |
+
 The body is the notes, and may use markdown. The table sorts newest-first and
 picks up new categories automatically.
 
