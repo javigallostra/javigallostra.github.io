@@ -1,0 +1,30 @@
+# Site settings
+
+title: Javi Gallostra's Personal Site
+author: Javi Gallostra
+description: >- # this means to ignore newlines until "baseurl:"
+  This is the personal site of Javi Gallostra.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://www.javigallostra.com" # the base hostname & protocol for your site, e.g. http://example.com
+github_username:  javigallostra
+
+# Build settings
+#
+# No theme is set. Note that the `github-pages` gem falls back to
+# jekyll-theme-primer when `theme` is absent, so any layout this site does not
+# define itself comes from that gem. This site defines default, home, page and
+# books in _layouts/, which covers every layout in use.
+collections:
+  books:
+    # The collection feeds the table on /books/. Individual book pages are not
+    # generated; the notes live inline in the table.
+    output: false
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - docs
+  - script
+  - vendor

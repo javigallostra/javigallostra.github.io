@@ -1,0 +1,222 @@
+/* Site styles. Deliberately small: system fonts, one column, hairline rules. */
+
+:root {
+  --bg: #fdfdfc;
+  --fg: #1b1b1a;
+  --muted: #6b6b68;
+  --rule: #e2e2de;
+  --accent: #2f5d50;
+  --measure: 900px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16171a;
+    --fg: #e8e8e5;
+    --muted: #9a9a96;
+    --rule: #2c2e33;
+    --accent: #7fb3a1;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Rows are hidden by setting the `hidden` attribute; table display rules
+   would otherwise beat the UA default. */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--accent); }
+
+.site-header,
+.page-content .wrapper,
+.site-footer {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: 2.5rem;
+  padding-bottom: 1rem;
+}
+
+.site-name {
+  color: var(--fg);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-nav { display: flex; gap: 1rem; }
+
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] { color: var(--fg); }
+
+h1 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h2 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.5rem; }
+
+.post-meta { margin: 0 0 1.5rem; color: var(--muted); font-size: 0.9rem; }
+
+pre, code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875em;
+}
+
+pre {
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  background: rgba(127, 127, 127, 0.09);
+  border-radius: 5px;
+}
+
+pre code { font-size: inherit; }
+
+/* ---------- books ---------- */
+
+.books-intro {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.books-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.books-controls input,
+.books-controls select {
+  padding: 0.4rem 0.55rem;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.9rem;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+.books-controls input { flex: 1 1 14rem; min-width: 0; }
+
+.table-scroll { overflow-x: auto; }
+
+table.books {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.925rem;
+}
+
+table.books th,
+table.books td {
+  padding: 0.6rem 0.75rem 0.6rem 0;
+  text-align: left;
+  vertical-align: baseline;
+  border-bottom: 1px solid var(--rule);
+}
+
+table.books th {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+table.books.js-enhanced th[data-sort] { cursor: pointer; user-select: none; }
+table.books.js-enhanced th[data-sort]:hover { color: var(--fg); }
+
+table.books th[aria-sort="ascending"]::after { content: " \2191"; }
+table.books th[aria-sort="descending"]::after { content: " \2193"; }
+
+.notes-toggle {
+  padding: 0;
+  color: var(--fg);
+  font: inherit;
+  font-weight: 500;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: text;
+}
+
+table.books.js-enhanced .notes-toggle { cursor: pointer; }
+table.books.js-enhanced .notes-toggle:hover { color: var(--accent); }
+
+/* The disclosure marker is meaningless without the script that drives it. */
+.notes-marker { display: none; }
+
+table.books.js-enhanced .notes-marker {
+  display: inline-block;
+  width: 1em;
+  color: var(--muted);
+}
+
+table.books.js-enhanced .notes-marker::before { content: "\25B8"; }
+
+table.books.js-enhanced .notes-toggle[aria-expanded="true"] .notes-marker::before {
+  content: "\25BE";
+}
+
+.col-rating { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.rating-max { color: var(--muted); font-size: 0.85em; }
+.col-categories { color: var(--muted); }
+
+.notes-row td { padding-top: 0; padding-bottom: 1rem; }
+
+.notes {
+  max-width: 60ch;
+  padding-left: 1em;
+  color: var(--muted);
+}
+
+.notes p { margin: 0 0 0.5rem; }
+.notes p:last-child { margin-bottom: 0; }
+
+.books-empty { color: var(--muted); }
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

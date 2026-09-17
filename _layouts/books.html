@@ -1,0 +1,79 @@
+---
+layout: default
+---
+
+{% assign books = site.books | sort: 'finished' | reverse %}
+
+{% comment %}
+  Build the category list from the categories actually in use, so the filter
+  can never drift out of sync with the collection.
+{% endcomment %}
+{% assign all_categories = "" | split: "" %}
+{% for book in books %}
+  {% assign all_categories = all_categories | concat: book.categories %}
+{% endfor %}
+{% assign categories = all_categories | uniq | sort %}
+
+<h1>Books</h1>
+
+<p class="books-intro">
+  {{ books | size }} book{% unless books.size == 1 %}s{% endunless %}, most recently finished first.
+  Click a column to sort, a book to read my notes.
+</p>
+
+<div class="books-controls">
+  <label class="visually-hidden" for="book-search">Search books</label>
+  <input type="search" id="book-search" placeholder="Search title or author">
+
+  <label class="visually-hidden" for="book-category">Filter by category</label>
+  <select id="book-category">
+    <option value="">All categories</option>
+    {% for category in categories %}
+    <option value="{{ category | downcase }}">{{ category }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<div class="table-scroll">
+  <table class="books" id="books-table">
+    <thead>
+      <tr>
+        <th scope="col" data-sort="title">Title</th>
+        <th scope="col" data-sort="author">Author</th>
+        <th scope="col" data-sort="finished" aria-sort="descending">Finished</th>
+        <th scope="col" data-sort="rating">Rating</th>
+        <th scope="col" data-sort="categories">Categories</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+      {% assign category_key = book.categories | join: '|' | downcase %}
+      <tr class="book-row"
+          data-title="{{ book.title | downcase | escape }}"
+          data-author="{{ book.author | downcase | escape }}"
+          data-finished="{{ book.finished | date: '%Y-%m-%d' }}"
+          data-rating="{{ book.rating }}"
+          data-categories="{{ category_key | escape }}">
+        <td class="col-title">
+          <button type="button" class="notes-toggle" aria-expanded="true"><span class="notes-marker" aria-hidden="true"></span>{{ book.title }}</button>
+        </td>
+        <td>{{ book.author }}</td>
+        <td>
+          <time datetime="{{ book.finished | date: '%Y-%m-%d' }}">{{ book.finished | date: '%-d %b %Y' }}</time>
+        </td>
+        <td class="col-rating">{{ book.rating }}<span class="rating-max">/10</span></td>
+        <td class="col-categories">{{ book.categories | join: ', ' }}</td>
+      </tr>
+      <tr class="notes-row">
+        <td colspan="5">
+          <div class="notes">{{ book.content | markdownify }}</div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<p id="books-empty" class="books-empty" hidden>No books match that search.</p>
+
+<script src="{{ '/assets/books.js' | relative_url }}" defer></script>

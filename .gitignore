@@ -1,0 +1,23 @@
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+
+# Local-only. None of this affects the published site: GitHub Pages runs
+# `jekyll build` and nothing else, and _config.yml excludes these paths from
+# the build anyway.
+docs
+script
+
+# Only appear if you run the optional script/books-dom-test.js
+node_modules
+package.json
+package-lock.json
+
+# Editor leftovers
+*.save
+.DS_Store
+
+# Claude Code working directory — contains git worktrees; never commit
+.claude

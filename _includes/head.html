@@ -1,0 +1,10 @@
+<head>
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <meta name="author" content="{{ site.author }}">
+    <!-- Thanks, but no. I don't like auto translation. -->
+    <meta name="googlebot" content="notranslate">
+    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
