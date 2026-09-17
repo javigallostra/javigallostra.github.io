@@ -7,6 +7,7 @@ vendor
 # Local-only. None of this affects the published site: GitHub Pages runs
 # `jekyll build` and nothing else, and _config.yml excludes these paths from
 # the build anyway.
+AGENTS.md
 docs
 script
 

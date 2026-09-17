@@ -21,6 +21,9 @@ collections:
     output: false
 
 exclude:
+  # Markdown at the root is rendered as a page by jekyll-optional-front-matter,
+  # so anything here that is not site content must be excluded explicitly.
+  - AGENTS.md
   - Gemfile
   - Gemfile.lock
   - LICENSE
